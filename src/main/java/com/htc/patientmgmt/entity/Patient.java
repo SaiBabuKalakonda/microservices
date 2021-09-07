@@ -1,5 +1,6 @@
 package com.htc.patientmgmt.entity;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,8 +11,12 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="Patient")
-public class Patient {
+public class Patient implements Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7416348549565195269L;
 	@Id
 	@GeneratedValue
 	private Long patientId;
