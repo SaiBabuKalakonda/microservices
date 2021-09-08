@@ -13,9 +13,7 @@ import javax.persistence.Table;
 @Table(name="Patient")
 public class Patient implements Serializable {
 	
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 7416348549565195269L;
 	@Id
 	@GeneratedValue
@@ -119,7 +117,7 @@ public class Patient implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Patient [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName + ", mobileNo="
+		return "Patient details [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName + ", mobileNo="
 				+ mobileNo + ", diseases=" + diseases + ", healthStatus=" + healthStatus + "]";
 	}
 	
