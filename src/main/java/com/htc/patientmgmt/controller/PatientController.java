@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.htc.patientmgmt.DTO.PatientDTO;
 import com.htc.patientmgmt.entity.Patient;
 import com.htc.patientmgmt.persistence.IPatient;
 
@@ -29,7 +30,7 @@ Patient getPatient(@PathVariable Long patientId)
 	
 }
 
-@GetMapping("/patients/{mobileNo}")
+@GetMapping("/patients-mobileNo/{mobileNo}")
 Patient getPatientByMobileNo(@PathVariable Long mobileNo)
 {
 	Patient pat=null;
@@ -37,20 +38,30 @@ Patient getPatientByMobileNo(@PathVariable Long mobileNo)
 	return pat;
 	
 }
-@GetMapping("/patients/{firstName}")
+@GetMapping("/patients-fistname/{firstName}")
 Patient getPatientByFirstName(@PathVariable String firstName)
 {
 	Patient pat=null;
-	pat=repo.findByName(firstName);
+	pat=repo.findByFirstName(firstName);
+	return pat;
+	
+}
+
+@GetMapping("/patients-lastName/{lastName}")
+Patient getPatientByLastName(@PathVariable String lastName)
+{
+	Patient pat=null;
+	pat=repo.findByFirstName(lastName);
 	return pat;
 	
 }
 
 
 @PostMapping("/patients")
-Patient createPatient(@RequestBody Patient pat)
+Patient createPatient(@RequestBody PatientDTO pat)
 {
-	return repo.save(pat);
+	Patient patient=new Patient(pat.getFirstName(),pat.getLastName(),pat.getEmergencyConactNo(),pat.getDiseases());
+	return repo.save(patient);
 	
 }
 

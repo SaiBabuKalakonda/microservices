@@ -2,6 +2,7 @@ package com.htc.patientmgmt.entity;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -24,23 +25,21 @@ public class Patient implements Serializable {
 	@Column
 	private String lastName;
 	@Column
-	private Long mobileNo;
+	private Long emergencyConactNo;
 	@Column
-	private String diseases;
-	@Column
-	private String healthStatus;
+	private List<Disease> diseases;
 	
 	public Patient() {
 		super();
 	}
 
-	public Patient(String firstName, String lastName, Long mobileNo, String diseases, String healthStatus) {
+	public Patient(String firstName, String lastName, Long mobileNo, List<Disease> diseases) {
 		super();
 		this.firstName = firstName;
 		this.lastName = lastName;
-		this.mobileNo = mobileNo;
+		this.emergencyConactNo = mobileNo;
 		this.diseases = diseases;
-		this.healthStatus = healthStatus;
+		
 	}
 
 	public Long getPatientId() {
@@ -68,28 +67,22 @@ public class Patient implements Serializable {
 	}
 
 	public Long getMobileNo() {
-		return mobileNo;
+		return emergencyConactNo;
 	}
 
 	public void setMobileNo(Long mobileNo) {
-		this.mobileNo = mobileNo;
+		this.emergencyConactNo = mobileNo;
 	}
 
-	public String getDiseases() {
+	public List<Disease> getDiseases() {
 		return diseases;
 	}
 
-	public void setDiseases(String diseases) {
+	public void setDiseases(List<Disease> diseases) {
 		this.diseases = diseases;
 	}
 
-	public String getHealthStatus() {
-		return healthStatus;
-	}
-
-	public void setHealthStatus(String healthStatus) {
-		this.healthStatus = healthStatus;
-	}
+	
 
 	@Override
 	public int hashCode() {
@@ -119,7 +112,7 @@ public class Patient implements Serializable {
 	@Override
 	public String toString() {
 		return "Patient details [patientId=" + patientId + ", firstName=" + firstName + ", lastName=" + lastName + ", mobileNo="
-				+ mobileNo + ", diseases=" + diseases + ", healthStatus=" + healthStatus + "]";
+				+ emergencyConactNo + ", diseases=" + diseases + "]";
 	}
 	
 }

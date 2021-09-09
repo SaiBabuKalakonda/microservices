@@ -11,6 +11,7 @@ import com.htc.patientmgmt.entity.Patient;
 @Repository
 public interface IPatient extends JpaRepository<Patient,Long>{
 
-	public Patient findByName(String firstName);
+	public Patient findByFirstName(String firstName);
+	public Patient findByLastName(String lastName);
 	
 }
