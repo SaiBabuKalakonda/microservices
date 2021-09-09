@@ -41,20 +41,10 @@ Patient getPatientByMobileNo(@PathVariable Long mobileNo)
 Patient getPatientByFirstName(@PathVariable String firstName)
 {
 	Patient pat=null;
-	pat=repo.findById(firstName).get();
+	pat=repo.findByName(firstName);
 	return pat;
 	
 }
-
-@GetMapping("/patients/{lastName}")
-Patient getPatientBylastName(@PathVariable String lastName)
-{
-	Patient pat=null;
-	pat=repo.findById(lastName).get();
-	return pat;
-	
-}
-
 
 
 @PostMapping("/patients")
