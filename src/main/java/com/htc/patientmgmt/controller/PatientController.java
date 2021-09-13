@@ -1,10 +1,14 @@
 package com.htc.patientmgmt.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -32,7 +36,7 @@ Patient getPatient(@PathVariable Long patientId)
 
 @GetMapping("/patients-mobileNo/{mobileNo}")
 Patient getPatientByMobileNo(@PathVariable Long mobileNo)
-{
+{ 
 	Patient pat=null;
 	pat=repo.findById(mobileNo).get();
 	return pat;
@@ -66,10 +70,21 @@ Patient createPatient(@RequestBody PatientDTO pat)
 }
 
 @GetMapping("/patients")
-Patient  findAll() {
+public List<Patient> getAllPatientdetails() {
+ 
+  List<Patient> list = new ArrayList<>();
+  Iterable<Patient> patients = repo.findAll();
 
-  return (Patient) repo.findAll();
+  patients.forEach(list::add);
+  return list;
 }
+
+@PutMapping("/patient")
+private Patient update(@RequestBody Patient patient)   
+{  
+patient=repo.saveAndFlush(patient);  
+return patient;  
+}  
 
 @DeleteMapping("/patients/{patientId}")
 void deletePatient(@PathVariable Long patientId)
